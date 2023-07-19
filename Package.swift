@@ -5,11 +5,20 @@ import PackageDescription
 
 let package = Package(
     name: "OnoPackage",
+    platforms: [
+        .iOS(.v11),
+        .macOS(.v10_13),
+        .watchOS(.v4),
+        .tvOS(.v11)
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "OnoPackage",
             targets: ["OnoPackage"]),
+//        .library(
+//            name: "Ono",
+//            targets: ["Ono"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -20,9 +29,25 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "OnoPackage",
-            dependencies: []),
+            dependencies: ["Ono"]),
         .testTarget(
             name: "OnoPackageTests",
-            dependencies: ["OnoPackage"]),
+            dependencies: ["OnoPackage"],
+            resources: [
+                .copy("Resources/ocf.txt"),
+            ]),
+        .target(
+            name: "Ono",
+            dependencies: []),
+        .testTarget(
+            name: "OnoTests",
+            dependencies: ["Ono"],
+            resources: [
+                .copy("Resources/atom.xml"),
+                .copy("Resources/ocf.xml"),
+                .copy("Resources/vmap.xml"),
+                .copy("Resources/web.html"),
+                .copy("Resources/xml.xml"),
+            ]),
     ]
 )

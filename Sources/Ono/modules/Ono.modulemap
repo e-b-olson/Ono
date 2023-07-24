@@ -1,0 +1,4 @@
+module Ono {
+    header "../include/Ono-Bridge-Header.h"
+    export *
+}
